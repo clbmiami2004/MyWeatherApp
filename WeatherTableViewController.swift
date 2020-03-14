@@ -42,12 +42,12 @@ class WeatherTableViewController: UITableViewController, UISearchBarDelegate {
         CLGeocoder().geocodeAddressString(location) { (placemarks:[CLPlacemark]?, error: Error?) in //We need to import Corelocation in order to be able to use geolocation
             if error == nil {
                 if let location = placemarks?.first?.location { //Checking if we have a location
-                    Weather.forecast(withLocation: location.coordinate, completion: { (results: [Weather]?) in
+                    Weather.forecast(withLocation: location.coordinate, completion: { (results: [Weather]?) in //Location coordinate comes from latitude and longitude. We want to use this array along the app. This is why we're creating a property on top.
                         
                         if let weatherData = results {
-                            self.foreCastData = weatherData
+                            self.foreCastData = weatherData // Sending the results to the array Weather.
                             
-                            DispatchQueue.main.async {
+                            DispatchQueue.main.async { // Reload the tableView. All the updates need to be performed on the Main thread. Using DsipatchQueue. This triggers the number of sections and the number of rows in section. 
                                 self.tableView.reloadData()
                             }
                         }
