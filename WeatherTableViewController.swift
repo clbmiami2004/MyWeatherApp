@@ -23,8 +23,10 @@ class WeatherTableViewController: UITableViewController, UISearchBarDelegate {
 
         searchBarOutlet.delegate = self //Name of Outlet
         updateWeatherForLocation(location: "Las Vegas")
+       
         
     }
+    
     
     //Methods:
 
@@ -57,6 +59,7 @@ class WeatherTableViewController: UITableViewController, UISearchBarDelegate {
         }
     }
     
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
@@ -85,7 +88,7 @@ class WeatherTableViewController: UITableViewController, UISearchBarDelegate {
         
         cell.textLabel?.text = weatherObject.summary
         cell.detailTextLabel?.text = "\(Int(weatherObject.temperature)) °F"
-        //cell.imageView?.image = UIImage(named: weatherObject.icon)
+        cell.imageView?.image = UIImage(named: weatherObject.icon)
 
         return cell
     }
